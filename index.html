@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Screen 1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:'Segoe UI', sans-serif;
+}
+
+body{
+  height:100vh;
+  background:radial-gradient(circle at top, #2a2f6b, #05060f);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:white;
+  overflow:hidden;
+}
+
+.screen{
+  text-align:center;
+  padding:20px;
+}
+
+.type{
+  font-size:26px;
+  font-style:italic;
+  line-height:1.6;
+  text-shadow:0 0 10px rgba(255,215,0,0.7);
+  max-width:700px;
+  margin:auto;
+}
+
+.tap{
+  margin-top:30px;
+  font-size:14px;
+  opacity:0.7;
+}
+</style>
+</head>
+
+<body>
+
+<div class="screen">
+  <div class="type" id="typeText"></div>
+  <div class="tap">tap anywhere to continue 🌙</div>
+</div>
+
+<script>
+const text =
+"Hey…\n\nThis is not a surprise.";
+
+let i = 0;
+const speed = 60;
+const el = document.getElementById("typeText");
+
+function typeWriter(){
+  if(i < text.length){
+    el.innerHTML += text.charAt(i) === "\n" ? "<br>" : text.charAt(i);
+    i++;
+    setTimeout(typeWriter, speed);
+  }
+}
+
+typeWriter();
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Screen 2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:'Segoe UI', sans-serif;
+}
+
+body{
+  height:100vh;
+  background:radial-gradient(circle at top, #2a2f6b, #05060f);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:white;
+}
+
+.container{
+  text-align:center;
+  padding:20px;
+  max-width:700px;
+}
+
+.text{
+  font-size:24px;
+  line-height:1.7;
+}
+
+.tap{
+  margin-top:30px;
+  font-size:14px;
+  opacity:0.7;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="text">
+    Hello, Hetsi ji<br><br>
+    I hope you’re doing okay today.<br>
+    This is just something small…
+  </div>
+
+  <div class="tap">
+    tap for more 💫
+  </div>
+</div>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Screen 3 – Hearts</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:'Segoe UI', sans-serif;
+}
+
+/* moon background */
+body{
+  height:100vh;
+  background:radial-gradient(circle at top, #2a2f6b, #05060f);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  color:white;
+}
+
+/* layout */
+.wrapper{
+  display:flex;
+  gap:28px;
+}
+
+/* heart card */
+.card{
+  width:170px;
+  height:170px;
+  perspective:1000px;
+  cursor:pointer;
+  position:relative;
+}
+
+.inner{
+  width:100%;
+  height:100%;
+  transition:transform 0.8s ease;
+  transform-style:preserve-3d;
+}
+
+.card.flip .inner{
+  transform:rotateY(180deg);
+}
+
+/* sides */
+.side{
+  position:absolute;
+  inset:0;
+  backface-visibility:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:18px;
+  text-align:center;
+}
+
+.back{
+  transform:rotateY(180deg);
+  font-size:14px;
+  line-height:1.5;
+}
+
+/* svg heart */
+svg{
+  width:120px;
+}
+
+/* heart letter */
+.letter{
+  fill:white;
+  font-size:30px;
+  font-weight:bold;
+}
+
+/* heart burst */
+.burst{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+
+.burst span{
+  position:absolute;
+  color:#ff5fa2;
+  font-size:14px;
+  animation:burst 0.8s ease forwards;
+}
+
+@keyframes burst{
+  0%{transform:scale(0);opacity:1}
+  100%{transform:translate(var(--x),var(--y)) scale(1);opacity:0}
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+  <!-- HEART H -->
+  <div class="card" onclick="openHeart(this)">
+    <div class="burst"></div>
+    <div class="inner">
+      <div class="side front">
+        <svg viewBox="0 0 100 90">
+          <path d="M50 80 C10 50 0 30 20 15 C35 5 50 20 50 20 C50 20 65 5 80 15 C100 30 90 50 50 80 Z" fill="#ff4f93"/>
+          <text x="50" y="55" text-anchor="middle" class="letter">H</text>
+        </svg>
+      </div>
+      <div class="side back">
+        Dear pretty girl, you are really very pretty — and in your school uniform, you look even more special.
+      </div>
+    </div>
+  </div>
+
+  <!-- HEART E -->
+  <div class="card" onclick="openHeart(this)">
+    <div class="burst"></div>
+    <div class="inner">
+      <div class="side front">
+        <svg viewBox="0 0 100 90">
+          <path d="M50 80 C10 50 0 30 20 15 C35 5 50 20 50 20 C50 20 65 5 80 15 C100 30 90 50 50 80 Z" fill="#ff4f93"/>
+          <text x="50" y="55" text-anchor="middle" class="letter">E</text>
+        </svg>
+      </div>
+      <div class="side back">
+        Dear silent eyes, your calm eyes make a quiet person like me feel peaceful and truly happy.
+      </div>
+    </div>
+  </div>
+
+  <!-- HEART T -->
+  <div class="card" onclick="openHeart(this)">
+    <div class="burst"></div>
+    <div class="inner">
+      <div class="side front">
+        <svg viewBox="0 0 100 90">
+          <path d="M50 80 C10 50 0 30 20 15 C35 5 50 20 50 20 C50 20 65 5 80 15 C100 30 90 50 50 80 Z" fill="#ff4f93"/>
+          <text x="50" y="55" text-anchor="middle" class="letter">T</text>
+        </svg>
+      </div>
+      <div class="side back">
+        Dear expression queen, your expressions, your smile, and the way you talk feel like a beautiful dream.
+      </div>
+    </div>
+  </div>
+
+  <!-- HEART S -->
+  <div class="card" onclick="openHeart(this)">
+    <div class="burst"></div>
+    <div class="inner">
+      <div class="side front">
+        <svg viewBox="0 0 100 90">
+          <path d="M50 80 C10 50 0 30 20 15 C35 5 50 20 50 20 C50 20 65 5 80 15 C100 30 90 50 50 80 Z" fill="#ff4f93"/>
+          <text x="50" y="55" text-anchor="middle" class="letter">S</text>
+        </svg>
+      </div>
+      <div class="side back">
+        Dear moon, every phase of the moon brings peace — and seeing you gives the same happiness.
+      </div>
+    </div>
+  </div>
+
+  <!-- HEART I -->
+  <div class="card" onclick="openHeart(this)">
+    <div class="burst"></div>
+    <div class="inner">
+      <div class="side front">
+        <svg viewBox="0 0 100 90">
+          <path d="M50 80 C10 50 0 30 20 15 C35 5 50 20 50 20 C50 20 65 5 80 15 C100 30 90 50 50 80 Z" fill="#ff4f93"/>
+          <text x="50" y="55" text-anchor="middle" class="letter">I</text>
+        </svg>
+      </div>
+      <div class="side back">
+        Dear Hetsi, I may not fit everything into words, but I’m truly grateful to have you in my life.
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function openHeart(card){
+  if(card.classList.contains("flip")) return;
+
+  const burst = card.querySelector(".burst");
+  for(let i=0;i<8;i++){
+    const h=document.createElement("span");
+    h.innerHTML="❤";
+    h.style.left="50%";
+    h.style.top="50%";
+    h.style.setProperty("--x",(Math.random()*60-30)+"px");
+    h.style.setProperty("--y",(Math.random()*60-30)+"px");
+    burst.appendChild(h);
+    setTimeout(()=>h.remove(),800);
+  }
+
+  setTimeout(()=>{
+    card.classList.add("flip");
+  },300);
+}
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Screen 4 – Little memories, big feelings</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:'Segoe UI', sans-serif;
+}
+
+body{
+  min-height:100vh;
+  background:radial-gradient(circle at top, #2a2f6b, #05060f);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:white;
+}
+
+.wrapper{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:22px;
+}
+
+.title{
+  font-size:24px;
+  margin-bottom:10px;
+  color:#ffd86b;
+  text-shadow:0 0 12px rgba(255,216,107,0.8);
+  letter-spacing:0.5px;
+  text-align:center;
+}
+
+.cloud{
+  width:340px;
+  height:155px;
+  perspective:1000px;
+  cursor:pointer;
+  position:relative;
+}
+
+.inner{
+  width:100%;
+  height:100%;
+  transition:transform 0.9s ease;
+  transform-style:preserve-3d;
+}
+
+.cloud.flip .inner{
+  transform:rotateY(180deg);
+}
+
+.side{
+  position:absolute;
+  inset:0;
+  backface-visibility:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:18px;
+  text-align:center;
+}
+
+.back{
+  transform:rotateY(180deg);
+  font-size:14px;
+  line-height:1.5;
+  color:#ffd86b;
+  text-shadow:0 0 8px rgba(255,216,107,0.6);
+}
+
+svg{
+  width:300px;
+}
+
+.front text{
+  fill:#ffd86b;
+  font-size:22px;
+  font-weight:bold;
+  text-shadow:0 0 8px rgba(255,216,107,0.7);
+}
+
+.burst{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+
+.burst span{
+  position:absolute;
+  color:#ff6fae;
+  font-size:14px;
+  animation:burst 0.8s ease forwards;
+}
+
+@keyframes burst{
+  0%{transform:scale(0);opacity:1}
+  100%{transform:translate(var(--x),var(--y)) scale(1);opacity:0}
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+  <div class="title">Little memories, big feelings</div>
+
+  <div id="clouds"></div>
+
+</div>
+
+<script>
+const data = [
+  ["1","30 November 2023 — 5:30 PM",
+   "The first time I saw you… and unknowingly fell into your eyes."],
+
+  ["2","22 January 2024",
+   "All the effort, all the courage — just to finally know your name."],
+
+  ["3","12 October 2024",
+   "Seeing you in a pink dupatta and Chaniya Choli… that moment stayed with me quietly."],
+
+  ["4","29 July 2025",
+   "The day you came to my class to write the participation list of Janmashtami. I was sitting on the first bench, shocked by happiness, noticing how quickly you looked at me."],
+
+  ["5","23 December 2025",
+   "The first time you looked at me by yourself — turning back and seeing me in class."],
+
+  ["6","30 December 2025",
+   "When I came to fill water… your smile and your blushing were really so, so, so cute."]
+];
+
+const container = document.getElementById("clouds");
+
+data.forEach(d=>{
+  container.insertAdjacentHTML("beforeend", `
+    <div class="cloud" onclick="toggleCloud(this)">
+      <div class="burst"></div>
+      <div class="inner">
+        <div class="side front">
+          <svg viewBox="0 0 200 100">
+            <path d="M40 70 Q30 40 60 35 Q70 15 100 25 Q130 10 150 30 Q180 30 170 65 Z"
+                  fill="#ff9fc9"/>
+            <text x="100" y="60" text-anchor="middle">${d[0]}</text>
+          </svg>
+        </div>
+        <div class="side back">
+          <strong>${d[1]}</strong><br><br>${d[2]}
+        </div>
+      </div>
+    </div>
+  `);
+});
+
+function toggleCloud(el){
+  const isFlipped = el.classList.contains("flip");
+
+  if(!isFlipped){
+    // heart burst only when flipping to back
+    const burst = el.querySelector(".burst");
+    for(let i=0;i<8;i++){
+      const h=document.createElement("span");
+      h.innerHTML="❤";
+      h.style.left="50%";
+      h.style.top="50%";
+      h.style.setProperty("--x",(Math.random()*60-30)+"px");
+      h.style.setProperty("--y",(Math.random()*60-30)+"px");
+      burst.appendChild(h);
+      setTimeout(()=>h.remove(),800);
+    }
+  }
+
+  el.classList.toggle("flip");
+}
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Screen 5 – A Gentle Promise</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:'Segoe UI', sans-serif;
+}
+
+body{
+  min-height:100vh;
+  background:radial-gradient(circle at top, #2a2f6b, #05060f);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  color:white;
+}
+
+.wrapper{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:18px;
+}
+
+/* Big cloud */
+.cloud{
+  width:390px;
+  height:230px;
+  perspective:1000px;
+  cursor:pointer;
+  position:relative;
+}
+
+.inner{
+  width:100%;
+  height:100%;
+  transition:transform 0.9s ease;
+  transform-style:preserve-3d;
+}
+
+.cloud.flip .inner{
+  transform:rotateY(180deg);
+}
+
+.side{
+  position:absolute;
+  inset:0;
+  backface-visibility:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:24px;
+  text-align:center;
+}
+
+.back{
+  transform:rotateY(180deg);
+  font-size:14px;
+  line-height:1.6;
+  color:#ffd86b;
+  text-shadow:0 0 8px rgba(255,216,107,0.6);
+}
+
+/* Cloud SVG */
+svg{
+  width:350px;
+}
+
+.front text{
+  fill:#ffd86b;
+  font-size:20px;
+  font-weight:bold;
+  text-shadow:0 0 8px rgba(255,216,107,0.7);
+}
+
+/* Heart burst */
+.burst{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+
+.burst span{
+  position:absolute;
+  color:#ff6fae;
+  font-size:14px;
+  animation:burst 0.8s ease forwards;
+}
+
+@keyframes burst{
+  0%{transform:scale(0);opacity:1}
+  100%{transform:translate(var(--x),var(--y)) scale(1);opacity:0}
+}
+
+/* Navigation text */
+.next{
+  margin-top:10px;
+  font-size:15px;
+  color:#ffd86b;
+  text-shadow:0 0 8px rgba(255,216,107,0.7);
+  cursor:pointer;
+  animation:glow 1.6s infinite alternate;
+}
+
+@keyframes glow{
+  from{opacity:0.6}
+  to{opacity:1}
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+  <!-- Big Cloud -->
+  <div class="cloud" onclick="toggleCloud(this)">
+    <div class="burst"></div>
+    <div class="inner">
+
+      <div class="side front">
+        <svg viewBox="0 0 200 100">
+          <path d="M40 70 Q30 40 60 35 Q70 15 100 25 Q130 10 150 30 Q180 30 170 65 Z"
+                fill="#ff9fc9"/>
+          <text x="100" y="60" text-anchor="middle">Tap gently</text>
+        </svg>
+      </div>
+
+      <div class="side back">
+        I don’t need anything more from life.  
+        If my every effort, every message, and every small action can make you smile, that is enough for me.<br><br>
+
+        The way you are — your beautiful eyes, your gentle nature, and the calmness you carry — makes everything feel lighter.  
+        Just your presence brings peace and a quiet happiness to my heart.<br><br>
+
+        I will always give you respect and care, in every way.  
+        I promise I will never discuss things that make you feel uncomfortable or guilty.  
+        My intention is simple — to protect your peace and to make you feel happy, always.  
+        Being your best friend itself is a very big thing for me, and I’m truly grateful for you.
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <div class="next" onclick="goNext()">Tap for more ✨</div>
+
+</div>
+
+<script>
+function toggleCloud(el){
+  const isFlipped = el.classList.contains("flip");
+
+  if(!isFlipped){
+    const burst = el.querySelector(".burst");
+    for(let i=0;i<10;i++){
+      const h=document.createElement("span");
+      h.innerHTML="❤";
+      h.style.left="50%";
+      h.style.top="50%";
+      h.style.setProperty("--x",(Math.random()*80-40)+"px");
+      h.style.setProperty("--y",(Math.random()*80-40)+"px");
+      burst.appendChild(h);
+      setTimeout(()=>h.remove(),800);
+    }
+  }
+  el.classList.toggle("flip");
+}
+
+function goNext(){
+  window.location.href = "screen6.html";
+}
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Screen 6 – End</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:'Segoe UI', sans-serif;
+}
+
+body{
+  min-height:100vh;
+  background:radial-gradient(circle at top, #2a2f6b, #05060f);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:white;
+}
+
+/* Container */
+.wrapper{
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:26px;
+}
+
+/* Circle heart */
+.circle{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  background:rgba(255, 105, 180, 0.18);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  box-shadow:0 0 20px rgba(255,105,180,0.35);
+  animation:pulse 2.5s infinite;
+}
+
+.circle span{
+  font-size:30px;
+  color:#ff6fae;
+}
+
+/* Pulse */
+@keyframes pulse{
+  0%{transform:scale(1);opacity:0.8}
+  50%{transform:scale(1.05);opacity:1}
+  100%{transform:scale(1);opacity:0.8}
+}
+
+/* Typewriter text */
+.message{
+  max-width:90%;
+  font-size:20px;
+  line-height:1.7;
+  color:rgba(255,255,255,0.65);
+  text-shadow:0 0 12px rgba(255,255,255,0.15);
+  white-space:pre-line;
+}
+
+/* Cursor */
+.cursor{
+  display:inline-block;
+  width:2px;
+  height:22px;
+  background:rgba(255,255,255,0.6);
+  margin-left:4px;
+  animation:blink 1s infinite;
+}
+
+@keyframes blink{
+  0%,50%{opacity:1}
+  51%,100%{opacity:0}
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+  <!-- Circle heart -->
+  <div class="circle">
+    <span>❤</span>
+  </div>
+
+  <!-- Typewriter text -->
+  <div class="message" id="text"></div>
+
+</div>
+
+<script>
+const content =
+`Sach mein… tu bahut, bahut pyaari hai.
+
+Shayad shabdon mein sab kuch keh paana mushkil ho,
+par dil se jo mehsoos hota hai, woh hamesha sach hota hai.
+
+Bas itna hi…`;
+
+let i = 0;
+const speed = 45;
+const target = document.getElementById("text");
+
+function typeWriter(){
+  if(i < content.length){
+    target.innerHTML = content.slice(0, i+1) + '<span class="cursor"></span>';
+    i++;
+    setTimeout(typeWriter, speed);
+  } else {
+    target.innerHTML = content; // remove cursor at end
+  }
+}
+
+typeWriter();
+</script>
+
+</body>
+</html>
